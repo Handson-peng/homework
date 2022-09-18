@@ -1,0 +1,7 @@
+lineBot:
+  channelSecret: ""
+  channelAccessToken: ""
+mongo:
+  uri : "mongodb://localhost:27017"
+  database : "test"
+  collection: "user_message"
