@@ -39,3 +39,25 @@ func LineCallback(c *gin.Context) {
 		}
 	}
 }
+
+func GetAllUser(c *gin.Context) {
+	rs := QueryAllUser()
+	if rs == nil {
+		c.JSON(http.StatusOK, "Error: there is no user in DB")
+	}
+	c.JSON(http.StatusOK, rs)
+}
+
+func PostUser(c *gin.Context) {
+	var json SendMessage
+	if err := c.ShouldBindJSON(&json); err != nil {
+		c.JSON(http.StatusBadRequest, "Error: " + err.Error())
+		return
+	}
+	if _, err = Linebot.PushMessage(json.UserId, linebot.NewTextMessage(json.Text)).Do(); err != nil {
+		c.JSON(http.StatusInternalServerError, "Error: " + err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, "Line text successfully send.")
+}
+

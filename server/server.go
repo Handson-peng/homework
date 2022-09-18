@@ -19,5 +19,7 @@ func Run() {
 	go database.Connect(viper.GetString("mongo.uri"), viper.GetString("mongo.database"), viper.GetString("mongo.collection"))
 	router := gin.Default()
 	router.POST("/callback", service.LineCallback)
+	router.GET("/user", service.GetAllUser)
+	router.POST("/user", service.PostUser)
 	router.Run(":80")
 }
