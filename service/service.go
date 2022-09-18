@@ -61,3 +61,22 @@ func PostUser(c *gin.Context) {
 	c.JSON(http.StatusOK, "Line text successfully send.")
 }
 
+func GetUserId(c *gin.Context) {
+	userid := c.Param("id")
+	rs := QueryById(userid)
+	if rs.Message == nil {
+		c.JSON(http.StatusBadRequest, "Error: there is no such UserId : " + userid)
+		return
+	}
+	c.JSON(http.StatusOK, rs)
+}
+
+func GetUserName(c *gin.Context) {
+	username := c.Param("name")
+	rs := QueryByName(username)
+	if rs.Message == nil {
+		c.JSON(http.StatusBadRequest, "Error: there is no such UserName : " + username)
+		return
+	}
+	c.JSON(http.StatusOK, rs)
+}

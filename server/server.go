@@ -21,5 +21,7 @@ func Run() {
 	router.POST("/callback", service.LineCallback)
 	router.GET("/user", service.GetAllUser)
 	router.POST("/user", service.PostUser)
+	router.GET("/user/:id", service.GetUserId)
+	router.GET("/user/name/:name", service.GetUserName)
 	router.Run(":80")
 }
