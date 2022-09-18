@@ -10,6 +10,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"github.com/Handson-peng/homework/server"
 )
 
 var cfgFile string
@@ -20,7 +21,9 @@ var rootCmd = &cobra.Command{
 	Short: "A server that can recive or send message through Linebot",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) {},
+	Run: func(cmd *cobra.Command, args []string) {
+		server.Run()
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
